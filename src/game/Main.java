@@ -57,6 +57,6 @@ public class Main{
 	}
 	public static void printBorder() {
 		System.out.println("***************************************************************************");
-	}
+	} 
 	
 }
