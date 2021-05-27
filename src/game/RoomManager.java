@@ -1,19 +1,20 @@
 package game;
 import fixtures.Room;
+import java.util.List;
 
 public class RoomManager {
 	//the room that a player should start
 	private Room startingRoom;
 	// all rooms
-	private Room [] rooms;
-	public RoomManager(Room s, Room[] rs) {
+	private List<Room> rooms;
+	public RoomManager(Room s, List<Room> rs) {
 		startingRoom = s;
 		rooms= rs;
 	}
 	public Room getStartingRoom() {
 		return startingRoom;
 	}
-	public Room[] getRooms() {
+	public List<Room> getRooms() {
 		return rooms;
 	}
 //	public RoomManager addRome(Room newRoom ) {
