@@ -7,7 +7,7 @@ public interface Direction {
 		String input = scan.next();
 		input = input.toLowerCase();
 		boolean isValid = false;
-		String[] condition = {"north","east","west","south"};
+		String[] condition = {"north","east","south","west"};
 		for (String var : condition ) {
 			if (input.equals(var)) {
 				isValid = true;

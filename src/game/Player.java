@@ -16,7 +16,9 @@ public class Player implements Direction,Print,GetInt  {
 	}
 	
 	public void checkStatus() {
+		printBorder();
 		println(name + " is in " + currentRoom.name);
+		println(currentRoom.shortDescription);
 	}
 	
 	public void actionList(Scanner scan) {
@@ -29,19 +31,26 @@ public class Player implements Direction,Print,GetInt  {
 		int choice = getInt(scan);
 		switch (choice) {
 			case 1: {
-				lookAround();
-				actionList(scan);
+				lookAround(scan);
+				break;
 			}
 			case 2:{
 				move(scan);
+				break;
 			}
+			default:{
+				println("Invalid Input! Please try again");
+				actionList(scan);
+			}
+			
 		}
 	}
 	
-	public void lookAround() {
+	public void lookAround(Scanner scan) {
 		printBorder();
 		println(name + " is looking around and see:");
-		println("working on the list");
+		println(currentRoom.longDescription);
+		actionList(scan);
 	}
 	
 	public void move(Scanner scan) {
@@ -55,13 +64,14 @@ public class Player implements Direction,Print,GetInt  {
 		}
 		else {
 			currentRoom = temp;
+			checkStatus();
+			actionList(scan);
 		}
-		checkStatus();
 	}
 	
 	public void listDirection() {
 		println("Where do you want to go?");
-		String[] direction = {"North","East","West","South"};
+		String[] direction = {"North","East","South","West"};
 		int i=0;
 		for( Room path : currentRoom.getExit() ) {
 			String text="";
