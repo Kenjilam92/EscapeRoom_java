@@ -36,7 +36,7 @@ public class Room extends Fixture implements Print{
 //			case "south": result = exits[2];
 //			case "west" : result = exits[3];
 //		}		
-		return result;
+		return result; 
 	}
 	
 	public void setExits (Room[] rooms) {
