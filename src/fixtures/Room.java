@@ -1,14 +1,19 @@
 package fixtures;
 import tools.Print;
+import java.util.ArrayList;
 
 public class Room extends Fixture implements Print{
 	private Room[] exits;
+	public ArrayList<Item> container;
+	public ArrayList<NPC> charactors; 
 	public Room(String name, String shortDescription, String longDescription, Room[] esc) {
 		super(name, shortDescription, longDescription);
 		exits = esc;
 	}
 	public Room(String n, String s, String l) {
 		this(n,s,l,null);
+		container= new ArrayList<Item>();
+		charactors= new ArrayList<NPC>();
 	}
 	public Room[] getExit() {
 		return exits;
@@ -42,4 +47,40 @@ public class Room extends Fixture implements Print{
 	public void setExits (Room[] rooms) {
 		exits = rooms;
 	}
+	public Room addItem( Item it) {
+		container.add(it);
+		return this;
+	}
+	public Room addCharactor(NPC pp ) {
+		charactors.add(pp);
+		return this;
+	}
+	
+	public boolean showItems() {
+		printBorder();
+		if (container.size()==0) {
+			println("there is nothing here to pick up");
+			return false;
+		}
+		println("Which item do you want to pick up?");
+		for (int i=0; i < container.size(); i++) {
+			print((i+1) + ". ");
+			println(container.get(i).name);
+		}
+		return true;
+	}
+	public boolean showCharactors() {
+		printBorder();
+		if (charactors.size()==0) {
+			println("there is nobody here");
+			return false;
+		}
+		println("Who do you want to talk to?");
+		for (int i=0; i < charactors.size(); i++) {
+			print((i+1)+ ". ");
+			println(charactors.get(i).name);
+		}
+		return true;
+	}
+	
 }
